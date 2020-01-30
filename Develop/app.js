@@ -28,7 +28,7 @@ $(document).click(_=>{
   let target = $(event.target)
   console.log($(event.target))
   //checks if a button is clicked
-  if($(event.target).is('button')){
+  if($(event.target).hasClass('saveBtn')){
     saveAppointment(target.attr('id'))
   }
 })
