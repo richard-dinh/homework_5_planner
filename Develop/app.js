@@ -1,6 +1,6 @@
 let appointment
 const renderCalendar = () =>{
-  for (let i = 9; i < 18; i++) {
+  for (let i = 7; i < 19; i++) {
     let selector = $(`#${i}`)
     let key = i.toString()
     //only outputs if there is a key
@@ -34,5 +34,7 @@ $(document).click(_=>{
 })
 
 renderCalendar()
+let now = moment().format('H')
+console.log(now)
 
 
