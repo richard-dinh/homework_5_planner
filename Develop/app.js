@@ -1,4 +1,5 @@
 let appointment
+let now = moment().format('H')
 const renderCalendar = () =>{
   for (let i = 7; i < 19; i++) {
     let selector = $(`#${i}`)
@@ -33,8 +34,34 @@ $(document).click(_=>{
   }
 })
 
+const colorCode = ()=>{
+  for(let i = 7; i<19; i++){
+    let selector = $(`#${i}`)
+    now = parseInt(now)
+    //code for if in the past
+    if(i<now){
+      selector.addClass('past')
+      selector.removeClass('future')
+      selector.removeClass('present')
+    }
+    //code for present hour
+    else if(i===now){
+      selector.removeClass('future')
+      selector.removeClass('past')
+      selector.addClass('present')
+    }
+    //code for future hour
+    else{
+      selector.removeClass('past')
+      selector.removeClass('present')
+      selector.addClass('future')
+    }
+  }
+}
+
 renderCalendar()
-let now = moment().format('H')
 console.log(now)
+setInterval(colorCode, 1000);
+
 
 
