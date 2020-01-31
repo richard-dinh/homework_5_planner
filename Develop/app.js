@@ -1,6 +1,7 @@
 let appointment
 let now = moment().format('H')
 const renderCalendar = () =>{
+  //renders the appointment info
   for (let i = 7; i < 19; i++) {
     let selector = $(`#${i}`)
     let key = i.toString()
@@ -10,6 +11,8 @@ const renderCalendar = () =>{
       selector.val(temp.text)
     }
   }
+  //render the current day
+  $('#currentDay').text(`${moment().format('dddd')}, ${moment().format("LL")}`)
 }
 
 const saveAppointment = id => {
@@ -63,5 +66,5 @@ renderCalendar()
 console.log(now)
 setInterval(colorCode, 1000);
 
-
+console.log(moment().format("LL"))
 
