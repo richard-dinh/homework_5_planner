@@ -1,6 +1,8 @@
 let appointment
+let now = moment().format('H')
 const renderCalendar = () =>{
-  for (let i = 9; i < 18; i++) {
+  //renders the appointment info
+  for (let i = 7; i < 19; i++) {
     let selector = $(`#${i}`)
     let key = i.toString()
     //only outputs if there is a key
@@ -9,6 +11,8 @@ const renderCalendar = () =>{
       selector.val(temp.text)
     }
   }
+  //render the current day
+  $('#currentDay').text(`${moment().format('dddd')}, ${moment().format("LL")}`)
 }
 
 const saveAppointment = id => {
@@ -33,6 +37,34 @@ $(document).click(_=>{
   }
 })
 
-renderCalendar()
+const colorCode = ()=>{
+  for(let i = 7; i<19; i++){
+    let selector = $(`#${i}`)
+    now = parseInt(now)
+    //code for if in the past
+    if(i<now){
+      selector.addClass('past')
+      selector.removeClass('future')
+      selector.removeClass('present')
+    }
+    //code for present hour
+    else if(i===now){
+      selector.removeClass('future')
+      selector.removeClass('past')
+      selector.addClass('present')
+    }
+    //code for future hour
+    else{
+      selector.removeClass('past')
+      selector.removeClass('present')
+      selector.addClass('future')
+    }
+  }
+}
 
+renderCalendar()
+console.log(now)
+setInterval(colorCode, 1000);
+
+console.log(moment().format("LL"))
 
